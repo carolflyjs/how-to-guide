@@ -25,13 +25,33 @@
 
   </head>
   <body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '610422235782838',
+          xfbml      : true,
+          version    : 'v2.6'
+        });
+      };
+
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
     <div id="wrapper1">
+
       <div id="header-wrapper">
         <div id="header" class="container">
-          <div id="logo"> <span class="icon icon-home"></span>
-            <h1><a href="#">Learning API</a></h1>
-            <span>Written by Shuang Carol Jin</span>
+          <div id="logo"> <span class="icon icon-tag"></span>
+            <h1><a href="#">Learning Wikipedia API</a></h1>
+            <span>Written by Shuang Carol Jin<br></span>
+
           </div>
+
           <div id="menu">
             <ul>
               <li><a href="home.html" accesskey="1" title="">Introduction</a></li>
@@ -48,25 +68,56 @@
       <div id="wrapper2">
         <div id="welcome" class="container">
           <div class="title">
-            <h2>Welcome to the API How-to Guide</h2>
+            <h2>What is JSON?</h2>
           </div>
-          <p>In this guide, you will learn the basics APIs and how to use APIs to get data that can enriches your website content. Note that the guide is designed for those who just started front-end web development with working knowledge about HTML. If you are an advanced web developer, this guide is not for you. </p>
+          <p>JSON = JavaScript Object Notation.</p>
+          <p>If you have worked with objects in JavaScript, you already know that "object" is a data type that  contains properties and methods, just like objects in real-life. JSON is specifically designed for data exchange. In Web APIs, JSON is one of the most popular formats for applications to exchange information. In this chapter, you will learn how to work with JSON properties through comparing it to JavaScript. </p>
         </div>
       </div>
       <div id="wrapper3">
         <div id="portfolio" class="container">
           <div class="title">
-            <h2>What is API ?</h2>
-            <p class="byline">A.K.A <strong>A</strong>pplication <strong>P</strong>rogramming <strong>I</strong>nterface </p> 
-            <p class="content">You are creating your own website about Chinese action movie stars like Bruce Lee or Jackie Chan. You decided to provide your visitors with information of their movies. While you do not want to send them away to other sites like IMDB, you are still hoping to take advantage of their data. 
+            <h2>How to work with JSON?</h2>    
+
+            <p class="byline"></p> 
+            <p class="content">
+              First, this is a comparison of JSON and JavaScript string object:
             </p>
-            <p class="content">If this story sounds somewhat familiar, you are looking for the solution of "API." But firstly, <strong>what is API?</strong></p>
-            <p class="content">Like many others, your search landed you onto <a href="https://en.wikipedia.org/wiki/Application_programming_interface">Wikipedia</a> where API is defined as "a set of routines, protocols, and tools for building software and applications." It is a rather technical, boring and somewhat scary definition. But relax, API is fun and not difficult at all. Let's start with the concept of <strong>interface</strong>. </p>
-            <span><img src="images/coffee-shop.jpg"></span>            
-            <p class="content">You came across a nice girl through an instant dating website on a Saturday afternoon. After messaging each other for a while, you decide to meet up right away! Now you just need to agree on <em>where</em> and <em>how</em> to recognize each other. So you decided to meet at Four Barrel Coffee, with you carrying a red book. On the date, you asked her questions about her job and family and made a hit! A successful first date!</p>
-            <p class="content">Believe it or not, making API connections is just like a first date. Only that instead of two human beings, it involves two applications. They meet at a <strong>URI address</strong> (the Four Barrel Coffee), with <strong>identity information</strong> (the red book) and some <strong>queries</strong> of interest (job and family questions).</p>
-            <p class="content">Doens't sound that difficult after all, does it? So now click the arrow below to move on!</p>
-            <div style="padding-top:50px"><p><a href="json.html" class="next-page"><span class="icon icon-arrow-right"></span> Next: JSON</a></p></div>
+            <table class="comparison-table" style="width:100%; padding: 20px 0 20px 0">
+              <tr>
+                <th>JSON</th>
+                <th>JavaScript</th>
+              </tr>
+              <tr>
+                <td style="padding:0 100px 0 100px;"><iframe width="100%" height="300" src="//jsfiddle.net/jinsh/wpfvockL/1/embedded/js/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe></td>
+                <td style="padding:0 100px 0 100px;"><iframe width="100%" height="300" src="//jsfiddle.net/jinsh/bbb40wnm/1/embedded/js/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe></td>
+              </tr>
+            </table>
+            
+            <p class="content">The data in the two are equivalent, with both objects being <em>nested</em> and <em>assigned</em> to <code>var friends</code>. One of the main differences is the use of quotes around properties. In JSON, all properties need to be in <strong>quotes</strong>. In regular JavaScript object, there's no such restrictions unless the property name contains spaces. Still, the structures don't look very different, do they?</p>
+            <p class="content">As it turns out, JSON is a standard built-in object in JavaScript these days, so even <strong>accessing the JSON object properties</strong> is similar to a JavaScript object.
+            </p>
+            <table class="comparison-table" style="width:100%; padding: 20px 0 20px 0">
+              <tr>
+                <th>JSON</th>
+                <th>JavaScript</th>
+              </tr>
+              <tr>
+                <td style="padding:0 100px 0 100px;"><iframe width="100%" height="300" src="//jsfiddle.net/jinsh/t7mv7po9/1/embedded/js,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe></td>
+                <td style="padding:0 100px 0 100px;"><iframe width="100%" height="300" src="//jsfiddle.net/jinsh/Ln7kbude/6/embedded/js,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe></td>
+              </tr>
+            </table>
+            <p class="content">For both JSON and JavaScript objects, we used <code>friends.ashley["current location"]</code> to access ashley's current location. The <strong>dot notation</strong> is used when the property name doesn't contain any space, and the <strong>bracket notation</strong> is used when space is present. If you don't understand what <code>$('.output').html(ashley_location)</code> is, don't worry. We'll explain it later in the <a href="jquery.html" target="_blank">jQuery</a> chapter.</p>
+            
+            <p class="content">So far so good? Now let's look at one last thing before moving on: converting JavaScript object to JSON format. </p>
+            <iframe width="100%" height="300" src="//jsfiddle.net/jinsh/eae64yh9/3/embedded/js,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            
+            <p class="content">As you see, we used a built-in JSON function <code>JSON.stringify(friends)</code> to convert the JSON object to a JavaScript string object. As a result, all property names are now wrapped around by quotes. Again, JSON is a built-in object, and <code>stringify()</code> is a native method.</p>
+            
+            <p class="content">There is another frequently-used method <code>JSON.parse(data)</code> which is used to process JSON data. The <code>data</code> argument passed into the function is often the .json file received through API. You will see examples in a later chapter <a href="display-data.html">Display Data in HTML</a>. For now, let's not worry too much about it and continue our planned journey.</p>
+            
+            <div style="padding-top:50px"><p><a href="#" class="next-page"><span class="icon icon-arrow-right"></span> Next: jQuery</a></p></div>
+            
             
           </div>
           
@@ -76,7 +127,12 @@
     
     <div id="copyright" class="container">
       <p>&copy; Shuang Carol Jin. All rights reserved. | CSS based on
-        <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+        <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.
+      </p>
+      <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+
+
     </div>
+
   </body>
 </html>

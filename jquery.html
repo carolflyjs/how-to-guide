@@ -25,22 +25,42 @@
 
   </head>
   <body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '610422235782838',
+          xfbml      : true,
+          version    : 'v2.6'
+        });
+      };
+
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
     <div id="wrapper1">
+
       <div id="header-wrapper">
         <div id="header" class="container">
-          <div id="logo"> <span class="icon icon-home"></span>
+          <div id="logo"> <span class="icon icon-book"></span>
             <h1><a href="#">Learning API</a></h1>
-            <span>Written by Shuang Carol Jin</span>
+            <span>Written by Shuang Carol Jin<br></span>
+
           </div>
+
           <div id="menu">
             <ul>
               <li><a href="home.html" accesskey="1" title="">Introduction</a></li>
               <li><a href="json.html" accesskey="2" title="">JSON</a></li>
-              <li class="current_page_item"><a href="jquery.html" accesskey="3" title="">JQuery</a></li>
-              <li><a href="#" accesskey="4" title="">API Request</a></li>
-              <li><a href="#" accesskey="5" title="">Get Data</a></li>
-              <li><a href="#" accesskey="6" title="">Display Data</a></li>
-              <li><a href="#" accesskey="7" title="">Challenge</a></li>
+              <li class="current_page_item"><a href="jquery.html" accesskey="3" title="">jQuery</a></li>
+              <li><a href="make-request.html" accesskey="4" title="">API Request</a></li>
+              <li><a href="get-data.html" accesskey="5" title="">Get Data</a></li>
+              <li><a href="display-data.html" accesskey="6" title="">Display Data</a></li>
+              <li><a href="challenge.html" accesskey="7" title="">Challenge</a></li>
             </ul>
           </div>
         </div>
@@ -48,25 +68,56 @@
       <div id="wrapper2">
         <div id="welcome" class="container">
           <div class="title">
-            <h2>Welcome to the API How-to Guide</h2>
+            <h2>What is jQuery?</h2>
           </div>
-          <p>In this guide, you will learn the basics APIs and how to use APIs to get data that can enriches your website content. Note that the guide is designed for those who just started front-end web development with working knowledge about HTML. If you are an advanced web developer, this guide is not for you. </p>
+          <p><a href="https://jquery.com">jQuery</a> is a JavaScript library. The primary usage of jQuery is to make your HTML pages more responsive and interactive with less code. It is widely supported by desktop and platform <a href="http://jquery.com/browser-support/" target="_blank">browsers</a>. Since the initial release of <a href="https://jquery.org/history/" target="_blank">jQuery 1.0</a> back in June 2016, we have seen lots of updates and additions. This chapter will teach you the basics of jQuery. For a comprehensive list of jQuery's usage, you should visit <a href="https://jquery.com" target="_blank">jquery.com</a>. What you should remember is jQuery is very good at making HTML elements dynamic and fun.</p>
         </div>
       </div>
       <div id="wrapper3">
         <div id="portfolio" class="container">
           <div class="title">
-            <h2>What is API ?</h2>
-            <p class="byline">A.K.A <strong>A</strong>pplication <strong>P</strong>rogramming <strong>I</strong>nterface </p> 
-            <p class="content">You are creating your own website about Chinese action movie stars like Bruce Lee or Jackie Chan. You decided to provide your visitors with information of their movies. While you do not want to send them away to other sites like IMDB, you are still hoping to take advantage of their data. 
+            <h2>How does jQuery work?</h2>    
+            <p class="byline"></p>
+            <p class="content">Before we dive into the usage, let's first see an example by <a href="https://www.codecademy.com/en/courses/web-beginner-en-bay3D/0/1?curriculum_id=50a3fad8c7a770b5fd0007a1" target="_blank">CodeAcademy</a>. On the Result tab, try hover the mouse over, away or click on the color blocks to see what happens. 
             </p>
-            <p class="content">If this story sounds somewhat familiar, you are looking for the solution of "API." But firstly, <strong>what is API?</strong></p>
-            <p class="content">Like many others, your search landed you onto <a href="https://en.wikipedia.org/wiki/Application_programming_interface">Wikipedia</a> where API is defined as "a set of routines, protocols, and tools for building software and applications." It is a rather technical, boring and somewhat scary definition. But relax, API is fun and not difficult at all. Let's start with the concept of <strong>interface</strong>. </p>
-            <span><img src="images/coffee-shop.jpg"></span>            
-            <p class="content">You came across a nice girl through an instant dating website on a Saturday afternoon. After messaging each other for a while, you decide to meet up right away! Now you just need to agree on <em>where</em> and <em>how</em> to recognize each other. So you decided to meet at Four Barrel Coffee, with you carrying a red book. On the date, you asked her questions about her job and family and made a hit! A successful first date!</p>
-            <p class="content">Believe it or not, making API connections is just like a first date. Only that instead of two human beings, it involves two applications. They meet at a <strong>URI address</strong> (the Four Barrel Coffee), with <strong>identity information</strong> (the red book) and some <strong>queries</strong> of interest (job and family questions).</p>
-            <p class="content">Doens't sound that difficult after all, does it? So now click the arrow below to move on!</p>
-            <div style="padding-top:50px"><p><a href="#" class="next-page"><span class="icon icon-arrow-right"></span> Next: JSON</a></p></div>
+            <iframe width="100%" height="300" src="//jsfiddle.net/jinsh/05v89fe7/2/embedded/js,result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            <p class="content">On the JavaScript block, you probably immediately noticed <code>$(document)</code> and <code>$('.div')</code>. Inside of the <code>$()</code>, we put in <strong>selectors</strong> (similar to selectors in CSS). Then it is followed by function calls <code>.ready()</code>, <code>.mouseenter()</code>, <code>.mouseleave()</code>, <code>.click()</code>. Note that higher-order functions are then passed in as arguments. We will continuously see/use them. If you are not comfortable with higher-order functions, I recommend you watching this video series on Youtube <a href="https://youtu.be/BMUiFMZr7vk?list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84" target="_blank">here</a>.
+            </p>
+            <p class="content">Still confused? It's ok. Now we are going to look at them piece by piece. </p>
+            
+            <h3>Getting Started</h3>
+            <p class="content">In the above example, the first line goes <code>$(document).ready(some function)</code>. </p>
+            <ul class="content">
+              <li><code>$()</code> is an alias for the function called <code>jQuery</code>. It announces that "we are using jQuery here!" </li>
+              <li><code>document</code> is the document object in HTML DOM, containing information of the entire HTML document. It is the "thing" that the function will have effect on. </li>
+              <li><code>.ready()</code> is a function defined in the <a href="http://api.jquery.com/">jQuery library</a>. It tells that "something is going to happen after the HTML document is fully loaded."</li>
+              <li><code>some function</code> inside of the paranthese of <code>.ready()</code> is going to be effective as soon as the page is ready. It usually looks like this - <code>function(){}</code>. In our above example, it contains the methods that change the shape's height when mouse hovers on the object and fade the object away when mouse is clicked.</li>          
+            </ul>
+            <p class="content">Most of the time, you want to have <code>$(document).ready()</code> at the beginning of your jQuery magic. Becausee it is unsafe to manipulate a safe until it is fully loaded. Although your code might work without it, you should not do so.</p>
+            
+            <h3>More jQuery Syntax</h3>
+            <p class="content">Now let's look inside of the function to be execute after the HTML is ready. </p>
+            <ul class="content">
+              <li><code>$('div').mouseenter(some function)</code> has a very similar structure as <code>$(document).ready()</code>. </li>
+              <li><code>$('div')</code> selects all <code>&lt;div&gt;</code> elements on the HTML. In the example above, it points to the four <code>&lt;div&gt;</code> elemnts, with the id "red", "blue", "yellow" and "green". Note that it has <strong>quotes</strong> around it. In fact, other than <code>document</code>, all other selectors need to be sorrounded by quotes. </li>
+              <li><code>.mouseenter(some function)</code> is another defined function in jQuery library. It tells that "something is going to happen after the mouse enters into the selected element."</li>
+            </ul>
+            <p class="content">It should be easy enough to guess what the other functions do. <code>$('div').mouseleave(some function)</code> does something when the mouse leaves the <code>&lt;div&gt;</code> elements; <code>$('div').click(some function)</code> gets triggered when the mouse is clicked. </p>
+            
+            <p class="content">Looking further inside of the function, you see the magic word of <code>this</code> inside of <code>$()</code>. Its usage is similar to <code>this</code> in many other programming languages. Only that you will need to wrap it inside of <code>$()</code> when you are calling a jQuery function on the object. <code>.animate()</code> and <code>.toggle()</code> are both jQuery functions, so you use <code>$(this)</code> instead of <code>this</code>. I'm sure you have guessed how <code>.animate()</code> and <code>.toggle()</code> work. To see more details, check out the <a href="http://api.jquery.com/" target="_blank">jQuery documentation</a>.</p>
+            
+            <h3>Activity</h3>
+            <p class="content">Let's do a bit practice! In the code below, the block's height gets changed when you click on any of them. Now make it that only the <code>&lt;div id="red"&gt;</code> element would change the height when it's clicked on. The other <code>&lt;div&gt;</code> elements should disappear when clicked on.</p>
+            
+            <p class="content">Hint: jQuery selector works similar as CSS. In CSS, dot is used for selecting classes and &#35; is used for selectin ID. </p>
+            
+            <iframe width="100%" height="300" src="//jsfiddle.net/jinsh/ojh4o64f/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            
+            <p class="content">Here is what it should look like. Try not peek into the answer before you solve it.</p>
+            <iframe width="100%" height="300" src="//jsfiddle.net/jinsh/6bzekacb/2/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            
+            <div style="padding-top:50px"><p><a href="make-request.html" class="next-page"><span class="icon icon-arrow-right"></span> Next: Making API Request</a></p></div>
+            
             
           </div>
           
@@ -76,7 +127,12 @@
     
     <div id="copyright" class="container">
       <p>&copy; Shuang Carol Jin. All rights reserved. | CSS based on
-        <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+        <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.
+      </p>
+      <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+
+
     </div>
+
   </body>
 </html>
