@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>How-to Guide</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="http://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <!--
+    Design by TEMPLATED
+    http://templated.co
+    Released for free under the Creative Commons Attribution License
+
+    Name       : Embellished 
+    Description: A two-column, fixed-width design with dark color scheme.
+    Version    : 1.0
+    Released   : 20140207
+
+    -->
+    <link href="default.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+
+    <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+  </head>
+  <body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '610422235782838',
+          xfbml      : true,
+          version    : 'v2.6'
+        });
+      };
+
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div id="wrapper1">
+
+      <div id="header-wrapper">
+        <div id="header" class="container">
+          <div id="logo"> <span class="icon icon-home"></span>
+            <h1><a href="home.html">Learning Wikipedia API</a></h1>
+            <span>Written by Shuang Carol Jin<br></span>
+
+          </div>
+
+          <div id="menu">
+            <ul>
+              <li><a href="home.html" accesskey="1" title="">Introduction</a></li>
+              <li><a href="json.html" accesskey="2" title="">JSON</a></li>
+              <li><a href="jquery.html" accesskey="3" title="">jQuery</a></li>
+              <li><a href="make-request.html" accesskey="4" title="">API Request</a></li>
+              <li class="current_page_item"><a href="access-data.html" accesskey="5" title="">Access Data</a></li>
+              <li><a href="display-data.html" accesskey="6" title="">Display Data</a></li>
+              <li><a href="challenge.html" accesskey="7" title="">Challenge</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="wrapper2">
+        <div id="welcome" class="container">
+          <div class="title">
+            <h2>What is JSONP?</h2>
+          </div>
+          <p>In the previous chapter, you saw a new term JSONP. From the name, we can guess that it has something to do with JSON. JSONP's full name is JSON with Padding. It is a technique that help web developers bypass the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS" target="_blank">Cross-Origin Resource Sharing (CORS)</a> restrictions.</p>
+          <p>CORS is a proposed Internet standard for allowing/disallowing web browsers to request data across domains. To simply it, the communications between your browser and another application are subject to restrictions if they are not hosted on the same server. JSONP is your easy way out. In this chapter, we will explain how JSONP works.</p>
+        </div>
+      </div>
+      <div id="wrapper3">
+        <div id="portfolio" class="container">
+          <div class="title">
+            <h2>How JSONP Works</h2>    
+            
+            <p class="byline"></p> 
+            <p class="content">Here is a pretty simple JSONP example adapted from <a href="http://schock.net/articles/2013/02/05/how-jsonp-really-works-examples/" target="_blank">Jason Schock's article</a>.
+            </p>
+            <iframe width="100%" height="300" src="//jsfiddle.net/jinsh/ch8syy2o/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            
+            <p class="content">There is no other JavaScript code used. All magic is done through the <code>&lt;script&gt;</code> tags in HTML.</p>
+            
+            <p class="content"><code>processJSON()</code> is a regular JavaScript function. It takes some data, logs it to the console and also converts and outputs it into the HTML. <code>document.getElementById("output").textContent</code> updates the text in the <code>&lt;div&gt;</code> block. If you don't remember how <code>JSON.stringify()</code> works, review the <a href="json.html">JSON</a> chapter again.</p>
+            
+            <p class="content">Another piece worth attention is <code>jsoncallback=processJSON</code> in the script URL. This paramter is <strong>super</strong> important. It says "pass the JSON response padded inside of the <code>processJson()</code> function as an argument!" See the result below.</p>
+            
+            <iframe width="100%" height="300" src="http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=processJSON&tags=monkey&tagmode=any&format=json" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            
+            <p class="content"><code>processJSON( {...} )</code> receives the entire JSON response as an argument and executes the way we defined it. </p>
+            
+            <p class="content">You may wonder why we need to do so. The reason is CORS. If we send the request plainly without using JSONP, we will get into a little trouble. Here is the <strong>almost</strong> same code as in the previous chapter. The only change is in the <code>dataType</code> property.</p>
+            <iframe width="100%" height="300" src="//jsfiddle.net/jinsh/euvz91po/2/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            
+            <p class="content">If we send the request plainly without using JSONP, no result is coming back. As a matter of fact, the response was received, but our browser cannot process it.</p>
+            
+            <img src="images/CORS_error.png">
+            
+            <p class="content">One of the restrictions defined by CORS is to have the "Access-Control-Allow-Origin" header in the response. However, this is not provided by the server. No matter what we do, we cannot change the behavior of a server, so we cannot just modify the response.</p>
+            
+            <p class="content">Here is how JSONP does the magic. jQuery provides JSONP as a method and handles the hassle behind the scene. </p>
+            <ul class="content">
+              <li>Defining a callback function that process the data whichever way you want.</li>
+              <li>Making the request via &lt;script&gt; tag, then padding the response. </li>
+            </ul>
+            
+            <h3>Activity</h3>
+            <p class="content">We've seen <code>GET</code> requests. Wikipedia actually allows both <code>GET</code> and <code>POST</code> methods on many endpoints. The way things are done are not so different for the <code>POST</code> method. Can you use what you have learned above to fix the code here? Right now, there's an CORS error that is preventing us getting the response correctly.</p>
+            <p class="content">There's another small trick in the parameters that would change the number of items received back. Make sure you update that as well. If you need more reference, please read it on the <a href="https://www.mediawiki.org/w/api.php?action=help&modules=opensearch">Wikipedia API documentation for "opensearch" action</a>.</p>
+              
+            <iframe width="100%" height="300" src="//jsfiddle.net/jinsh/7rkb76ha/1/embedded/js,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>              
+            
+            <p class="content">The corrected code should produce result below: </p>
+            
+            <iframe width="100%" height="300" src="//jsfiddle.net/jinsh/yv9kwgco/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            
+            <div style="padding-top:50px"><p><a href="display-data.html" class="next-page"><span class="icon icon-arrow-right"></span> Next: Display Data</a></p></div>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div id="copyright" class="container">
+      <p>&copy; Shuang Carol Jin. All rights reserved. | CSS based on
+        <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.
+      </p>
+      <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+
+
+    </div>
+
+  </body>
+</html>

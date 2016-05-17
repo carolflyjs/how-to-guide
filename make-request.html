@@ -47,18 +47,18 @@
       <div id="header-wrapper">
         <div id="header" class="container">
           <div id="logo"> <span class="icon icon-home"></span>
-            <h1><a href="#">Learning Wikipedia API</a></h1>
+            <h1><a href="home.html">Learning Wikipedia API</a></h1>
             <span>Written by Shuang Carol Jin<br></span>
 
           </div>
 
           <div id="menu">
             <ul>
-              <li class="current_page_item"><a href="home.html" accesskey="1" title="">Introduction</a></li>
+              <li><a href="home.html" accesskey="1" title="">Introduction</a></li>
               <li><a href="json.html" accesskey="2" title="">JSON</a></li>
               <li><a href="jquery.html" accesskey="3" title="">jQuery</a></li>
               <li class="current_page_item"><a href="make-request.html" accesskey="4" title="">API Request</a></li>
-              <li><a href="get-data.html" accesskey="5" title="">Get Data</a></li>
+              <li><a href="access-data.html" accesskey="5" title="">Access Data</a></li>
               <li><a href="display-data.html" accesskey="6" title="">Display Data</a></li>
               <li><a href="challenge.html" accesskey="7" title="">Challenge</a></li>
             </ul>
@@ -68,21 +68,55 @@
       <div id="wrapper2">
         <div id="welcome" class="container">
           <div class="title">
-            <h2></h2>
+            <h2>What is an API request?</h2>
           </div>
-          <p></p>
+          <p>Making an API request is basically one application requesting another application to respond. It is requested from a certain address, with a method, brings some data over and may carry authorization information. </p>
+          <p>Remember the online dating story in the first chapter? An API request is like heading to a first data to get to know each other(method), a specific destination (address), what to bring so the other recognizes you (authorizastion) and have a set of things you want to ask/tell your date (data). If you are nervous about a asking a girl out, you might have read articles like "how to ask for a date". In this chapter, we are going to show you "how can your browser ask other applications 'out'". </p>
         </div>
       </div>
       <div id="wrapper3">
         <div id="portfolio" class="container">
           <div class="title">
-            <h2></h2>    
+            <h2>Using jQuery to Make API Request</h2>    
 
             <p class="byline"></p> 
-            <p class="content">
+            <p class="content">When you make an API request, you expect a response from the other end. If the request is made successfully, then you get expected responses. Compared to the built-in JavaScript libraries, jQuery has made it a lot eaiser to make API request. Let's see some code to get you started. 
             </p>
-            
-            <div style="padding-top:50px"><p><a href="#" class="next-page"><span class="icon icon-arrow-right"></span> Next: </a></p></div>
+            <iframe width="100%" height="300" src="//jsfiddle.net/t4b9vjpe/8/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            <p class="content">What happened here is we made a request to the Wikipedia site. In the request, we queried "coffee", and asked Wikipedia for pages with matching names. Don't be scared. At least not yet. We'll explain line by line. </p>
+            <ul class="content">
+              <li><code>$(document).ready(function(){})</code>: at this point, you should be fairly familiar with this line of code. As a reminder, it tells the code to run <em>after</em> the original HTML is loaded.</li>
+              <li><code>$.ajax()</code>: this is used to send an API request. To be more accurate, an Ajax request. Wait, what the heck is Ajax? The long name of Ajax is asynchoronous JavaSciprt and XML. But that doesn't help, does it? Basically, Ajax is a web techinque used to send HTTP request. Think of it as a dating invite technique. <code>$.ajax()</code> enables you to apply the Ajax technique and send request. There are many other ways you can apply the Ajax technique, but we will focus on jQuery in this guide. If it still doesn't make much sense, just remember - <code>$.ajax()</code> is how you declare an API request!</li>
+              <li><code>method: "GET"</code>: I like to interpret <code>method</code> as "purpose". The purpose of this API request is to <code>GET</code> data. There are other methods such as <code>POST</code>, <code>PUT</code>, etc. <code>POST</code> is used when the API request is to <code>POST</code> data to the destination. <code>PUT</code> is similar to <code>POST</code>, but <code>PUT</code> is more used for creating new data, while <code>POST</code> is more for updating data.</li>
+              <li><code>url: "https://en.wikipedia.org/w/api.php?action=opensearch&amp;search=coffee&amp;format=json"</code>: this is more or less straightforward. The <code>url</code> is the destination, where your data is waiting for you. The <code>url</code> includes three parts: host (<code>https://en.wikipedia.org</code>), path(<code>/w/api.php</code>) and query parameters(<code>?action=opensearch&amp;search=coffee&amp;format=json</code>). Host marks where the server is located. Path is the file path on the server, like locating a room in a hotel. Query parameters are our queries, like the questions you are asking to your date. In this case, we brought three queries: action, search and format.</li>
+              <li><code>dataType: "jsonp"</code>: this is to indicate what type of data your expecting back. Specifying this will help jQuery handle the response appropriately. We haven't talked about <code>jsonp</code>, but for now, just see it as a type of JSON that needs to be processed in a special way. We will explain more about JSONP in the next chapter.</li>
+              <li><code>success: function(data) {}</code>: this is to say "if the request is made successfully and the responded data looks good, then do something with that data.</li>
+              <li><code>console.log(data)</code>: this should look familiar to you as <code>console.log()</code> is very often used in JavaScript. Here it will log the actual data received in the console. Use F12 to open the Developer Tool and see it on your browser. We also included a screenshot below.</li>
+              <li><code>for (var i = 0; i &lt; data[1].length; i++){}</code>: this <code>for</code> block parsed the responded data onto our HTML, so to present the respone in a desired format to the reader. In a later chapter, we will dive into how to parse the result into the HTML as shown in the <code>for</code> block. Now let's first take a closer look into the responded data.</li>
+            </ul>
+            <img src="images/coffee_returned.png" style="width: 60%">
+            <p class="content">This is a JSON object. It is somehow different from the JSON object we saw in previous chapter, because we only have values here without keys. The 0, 1, 2 you see are not actual keys, but are put there by the browser so it is easier to read. The data is comprised of  the search term we sent to the server "coffee", an array of page names found, an array of description on the pages, and an array of their URLs. </p>
+            <h3>Recap of $.AJAX()</h3>
+            <p class="content">In the above example, the key function we used to send out the request was <code>$.ajax()</code>. In the parameter, we passed in an object that contains various configurations of this request, including its method, destination, expected data type and what to do when the request is made successfully.</p>
+            <p class="content">Whether any specific configuration is required is usually decided by the server which is the application your request communicates to. That said, the <code>url</code> is almost always presented, because there must be a "place" where the two applications meet. The <code>url</code> specifies the host, the path (if any) and the parameters (if any). </p>
+            <h3>Another way of passing parameters</h3>
+            <p class="content">In fact, the parameters may be passed as a separate configuration. </p>
+            <iframe width="100%" height="300" src="//jsfiddle.net/jinsh/c92a73ra/embedded/js,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            <p class="content">This time, the <code>url</code> only contains the host and path without the parameters. But there's an extra property <code>data</code>. If you take another look, you'll notice that in the data value, we passed an object with three properties, which match the parameters in the previous example exactly. What happened there was jQuery converted these properties into a string and appended the string as parameters. Note that it is <em>not</em> a JSON object, but a regular plain object.</p>
+            <p class="content"><code>data: {action: "opensearch", search: "coffee", format: "json"}</code> </p>
+            <h3>Activity</h3>
+            <p class="content">Create an Ajax request using jQuery. It should do the following:</p>
+            <ul class="content">
+              <li>Send a <code>GET</code> request to <code>https://en.wikipedia.org/w/api.php</code>.</li>
+              <li><code>dataType</code> should be <code>jsonp</code>.</li>
+              <li>For your paramters, you have <code>action=query</code>, <code>prop=images</code>, <code>titles=Oregon_State_University</code>, and <code>format=json</code>. The paramters should be passed as <code>data</code> property. </li>
+              <li>The <code>success</code> function is provided. You do not need to modify it.</li>
+            </ul>
+            <p class="content">Hint: don't forget to enable jQuery on the JSFiddle. Otherwise your code won't compile correctly.</p>
+            <iframe width="100%" height="300" src="//jsfiddle.net/jinsh/0rd6xpha/1/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            <p class="content">If your code is correct, you should see the result as below. </p>
+            <iframe width="100%" height="300" src="//jsfiddle.net/jinsh/nnxreh8c/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            <div style="padding-top:50px"><p><a href="access-data.html" class="next-page"><span class="icon icon-arrow-right"></span> Next: Access Data </a></p></div>
             
           </div>
           

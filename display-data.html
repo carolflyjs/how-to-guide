@@ -47,18 +47,18 @@
       <div id="header-wrapper">
         <div id="header" class="container">
           <div id="logo"> <span class="icon icon-home"></span>
-            <h1><a href="#">Learning Wikipedia API</a></h1>
+            <h1><a href="home.html">Learning Wikipedia API</a></h1>
             <span>Written by Shuang Carol Jin<br></span>
 
           </div>
 
           <div id="menu">
             <ul>
-              <li class="current_page_item"><a href="home.html" accesskey="1" title="">Introduction</a></li>
+              <li><a href="home.html" accesskey="1" title="">Introduction</a></li>
               <li><a href="json.html" accesskey="2" title="">JSON</a></li>
               <li><a href="jquery.html" accesskey="3" title="">jQuery</a></li>
               <li><a href="make-request.html" accesskey="4" title="">API Request</a></li>
-              <li><a href="get-data.html" accesskey="5" title="">Get Data</a></li>
+              <li><a href="access-data.html" accesskey="5" title="">Access Data</a></li>
               <li class="current_page_item"><a href="display-data.html" accesskey="6" title="">Display Data</a></li>
               <li><a href="challenge.html" accesskey="7" title="">Challenge</a></li>
             </ul>
@@ -68,21 +68,47 @@
       <div id="wrapper2">
         <div id="welcome" class="container">
           <div class="title">
-            <h2></h2>
+            <h2>Enrich Your Website with API</h2>
           </div>
-          <p></p>
+          <p>In the previous chapters, we learned about obtaining API data. But what do you do with them? Surely you don't want to just console.log() everything, because usually, visitors do not look into the console. Therefore, you need to be able to parse the received data and push them to the HTML.</p>
         </div>
       </div>
       <div id="wrapper3">
         <div id="portfolio" class="container">
           <div class="title">
-            <h2></h2>    
+            <h2>Populating HTML with jQuery</h2>    
+            <iframe width="100%" height="400" src="//jsfiddle.net/jinsh/t7mv7po9/1/embedded/js,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
             <p class="byline"></p> 
-            <p class="content">
+            <p class="content">In an early chapter, we used this code to explain JSON data strcture. The code on the last line is HTML population in its simpliest form. 
             </p>
+            <p class="content"><code>$('.output').html(ashley_location);</code></p>
             
-            <div style="padding-top:50px"><p><a href="#" class="next-page"><span class="icon icon-arrow-right"></span> Next: </a></p></div>
+            <p class="content"><code>.html(something)</code> is a jQuery function that sets the selected object in the document with <code>something</code>. This <code>something</code> is expected to be a <strong>string</strong> formated in <code>html</code>. Let's make it a little bit fancier.</p>
+            
+            <iframe width="100%" height="400" src="//jsfiddle.net/jinsh/0gbgf7bs/embedded/js,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            
+            <p class="content">Instead of pushing the plain <code>ashley_location</code>, we pushed <code>"&lt;em&gt;" + ashley_location + "/&lt;em&gt;"</code>. What this does is to wrap the original string with a pair of <code>"&lt;em&gt;"</code> tag. We know that <code>ashley_location</code> is a string "Hong Kong". So <code>"&lt;em&gt;" + ashley_location + "/&lt;em&gt;"</code> produces <code>&lt;em&gt;Hong Kong&lt;/em&gt;</code>.</p>
+            
+            <p class="content">This wasn't too complicated, so time to level up. Often, you obtain data in array like this one. </p>
+            <iframe width="100%" height="300" src="//jsfiddle.net/t4b9vjpe/8/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>            
+            <p class="content">This one used a <code>for</code> loop that repetitively modifies the HTML code. Firstly, what exactly is being looped through?</p>
+            
+            <p class="content"><code>i &lt; data[1].length</code> gives the answer awway. It is looping through the <em>2nd</em> value in the received object. Because it is using the <code>.length</code> function, you can guess that this 2nd value is an array. </p>
+            
+            <p class="content"><code>["Coffee", "Coffeehouse", "Coffee in Seattle", "Coffee preparation", "Coffeeshop Company", "Coffee bean", "Coffee production in India", "Coffee and doughnuts", "Coffee production in Indonesia", "Coffee production in Colombia"]</code></p>
+            
+            <p class="content">This array contains all the page names returned from the search. There is a total of 10 results returned, and therefore the loop stops after the 10th iteration. </p>
+            
+            <p class="content">In each iteration, it produces a chunk of <code>html</code> code, and then <code>.append()</code> it to the target object - the <code>&lt;div&gt;</code> tag. <code>.append(something)</code> is a function used to add new content after existing content. It works similarly as the <code>+=</code> operator in programming languages. </p>
+            
+            <p class="content">The rest of the trick was pulled by the following code, which looks more complicated than it actually is: <code>&quot;&lt;div&gt;&lt;h2&gt;&lt;a href=&quot; + data[3][i] + &quot;&gt;&quot; + data[1][i] + &quot;&lt;/a&gt;&lt;/h2&gt;&quot; + &quot;&lt;p&gt;&quot; + data[2][i] + &quot;&lt;/p&gt;&lt;/div&gt;&quot;</code></p>
+            
+            <p class="content"><code>data[1][i]</code> = page name, <code>data[2][i]</code> = page description, and <code>data[3][i]</code> = page url. Essentially, what we put together is <code>&lt;div&gt;&lt;h2&gt;&lt;a href={{page url}}&quot;&gt;{{page name}}&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;{{page description}}&lt;/p&gt;&lt;/div&gt;&quot;</code>.</p>
+            
+            <p class="content">So far so good? In this chapter, we learned about how to parse data into <code>html</code>. Together with the API request making, we can make things more fun. Ready for the final challenge?</p>
+            
+            <div style="padding-top:50px"><p><a href="challenge.html" class="next-page"><span class="icon icon-arrow-right"></span> Next: Challenge</a></p></div>
             
           </div>
           

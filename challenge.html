@@ -47,7 +47,7 @@
       <div id="header-wrapper">
         <div id="header" class="container">
           <div id="logo"> <span class="icon icon-home"></span>
-            <h1><a href="#">Learning Wikipedia API</a></h1>
+            <h1><a href="home.html">Learning Wikipedia API</a></h1>
             <span>Written by Shuang Carol Jin<br></span>
 
           </div>
@@ -58,7 +58,7 @@
               <li><a href="json.html" accesskey="2" title="">JSON</a></li>
               <li><a href="jquery.html" accesskey="3" title="">jQuery</a></li>
               <li><a href="make-request.html" accesskey="4" title="">API Request</a></li>
-              <li><a href="get-data.html" accesskey="5" title="">Get Data</a></li>
+              <li><a href="access-data.html" accesskey="5" title="">Access Data</a></li>
               <li><a href="display-data.html" accesskey="6" title="">Display Data</a></li>
               <li class="current_page_item"><a href="challenge.html" accesskey="7" title="">Challenge</a></li>
             </ul>
@@ -68,21 +68,37 @@
       <div id="wrapper2">
         <div id="welcome" class="container">
           <div class="title">
-            <h2></h2>
+            <h2>Making "Nested" API Calls</h2>
           </div>
-          <p></p>
+          <p>In this final challenge, you will try to conquer a more complicated situation - making two consecutive API calls, with the second call based on the first call's response.</p>
         </div>
       </div>
       <div id="wrapper3">
         <div id="portfolio" class="container">
           <div class="title">
-            <h2></h2>    
+            <h2>Are you ready?</h2>    
 
             <p class="byline"></p> 
-            <p class="content">
+            <p class="content">Recall that in one of the previous chapters, you did a challenge to create a functional API call:
             </p>
+            <iframe width="100%" height="300" src="//jsfiddle.net/jinsh/nnxreh8c/embedded/result,js,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
             
-            <div style="padding-top:50px"><p><a href="#" class="next-page"><span class="icon icon-arrow-right"></span> Next: </a></p></div>
+            <p class="content">Obviously, this is not very nice to look, because the images are not displayed as images. If you click on any of the link, you will see that these are <em>not</em> actually images. Instead, it's a page that contains the image's information. The image's direct URL is <em>not</em> returned in the API call we've made.</p>
+            
+            <p class="content">In this final challenge, you need to obtain the image's direct URL by making a second API call. The second API call will be based on the response from the first API call. Your result should be showing 10 actual images on the page. You may apply any <code>CSS</code> style as you prefer.</p>
+            
+            <p class="content">Hint: </p>
+            <ul class="content">
+              <li>using recursive functions can help you call the same function multiple times.</li> 
+              <li>to get the image URL, you will need to use the <code>action=query</code> again. Read more <a href="https://commons.wikimedia.org/wiki/Commons:FAQ#What_are_the_strangely_named_components_in_file_paths.3F" target="_blank">here</a>.</li>
+              <li>if you have trouble structuring the <code>html</code> code, try to do it without variables first.</li>
+            </ul>
+            
+            <p class="content">Below is an example. Good luck!</p>
+            <iframe width="100%" height="800" src="//jsfiddle.net/jinsh/n01yvkn9/1/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            
+            
+            <div style="padding-top:50px"><p><span class="icon icon-arrow-right"></span> The End </p></div>
             
           </div>
           
