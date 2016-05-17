@@ -70,7 +70,7 @@
           <div class="title">
             <h2>Enrich Your Website with API</h2>
           </div>
-          <p>In the previous chapters, we learned about obtaining API data. But what do you do with them? Surely you don't want to just console.log() everything, because usually, visitors do not look into the console. Therefore, you need to be able to parse the received data and push them to the HTML.</p>
+          <p>In the previous chapters, we learned about obtaining API data. But what do you do with them? Surely you don't want to just console.log() everything, because visitors do not look into the console (and it's formatted somewhat ugly). Therefore, you need to be able to parse the received data and push them to the HTML.</p>
         </div>
       </div>
       <div id="wrapper3">
@@ -84,13 +84,15 @@
             </p>
             <p class="content"><code>$('.output').html(ashley_location);</code></p>
             
-            <p class="content"><code>.html(something)</code> is a jQuery function that sets the selected object in the document with <code>something</code>. This <code>something</code> is expected to be a <strong>string</strong> formated in <code>html</code>. Let's make it a little bit fancier.</p>
+            <p class="content"><code>.html(something)</code> is a jQuery function that sets the selected object in the document with <code>something</code>. This <code>something</code> is expected to be a <strong>string</strong> formatted in <code>html</code>. </p>
+              
+            <p class="content">Let's make it a little fancier.</p>
             
             <iframe width="100%" height="400" src="//jsfiddle.net/jinsh/0gbgf7bs/embedded/js,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
             
             <p class="content">Instead of pushing the plain <code>ashley_location</code>, we pushed <code>"&lt;em&gt;" + ashley_location + "/&lt;em&gt;"</code>. What this does is to wrap the original string with a pair of <code>"&lt;em&gt;"</code> tag. We know that <code>ashley_location</code> is a string "Hong Kong". So <code>"&lt;em&gt;" + ashley_location + "/&lt;em&gt;"</code> produces <code>&lt;em&gt;Hong Kong&lt;/em&gt;</code>.</p>
             
-            <p class="content">This wasn't too complicated, so time to level up. Often, you obtain data in array like this one. </p>
+            <p class="content">It wasn't too complicated, so time to level up! Often, you obtain values in an array like this one below. </p>
             <iframe width="100%" height="300" src="//jsfiddle.net/t4b9vjpe/8/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>            
             <p class="content">This one used a <code>for</code> loop that repetitively modifies the HTML code. Firstly, what exactly is being looped through?</p>
             
