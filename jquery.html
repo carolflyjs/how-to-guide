@@ -6,6 +6,7 @@
     <title>How-to Guide</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="http://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
     <!--
     Design by TEMPLATED
@@ -70,7 +71,7 @@
           <div class="title">
             <h2>What is jQuery?</h2>
           </div>
-          <p><a href="https://jquery.com">jQuery</a> is a JavaScript library. The primary usage of jQuery is to make your HTML pages more responsive and interactive with less code. It is widely supported by desktop and platform <a href="http://jquery.com/browser-support/" target="_blank">browsers</a>. Since the initial release of <a href="https://jquery.org/history/" target="_blank">jQuery 1.0</a> back in June 2016, we have seen lots of updates and additions. This chapter will teach you the basics of jQuery. For a comprehensive list of jQuery's usage, you should visit <a href="https://jquery.com" target="_blank">jquery.com</a>. What you should remember is jQuery is very good at making HTML elements dynamic and fun.</p>
+          <p><a href="https://jquery.com">jQuery</a> is a JavaScript library. The primary usage of jQuery is to make your HTML pages more responsive and interactive with less code. It is widely supported by <a href="http://jquery.com/browser-support/" target="_blank">modern browsers</a>. Since the initial release of <a href="https://jquery.org/history/" target="_blank">jQuery 1.0</a> back in June 2016, we have seen lots of updates and additions. This chapter will teach you the basics of jQuery. For a comprehensive list of jQuery's usage, you should visit <a href="https://jquery.com" target="_blank">jquery.com</a>. What you should remember is jQuery is very good at making HTML elements dynamic and fun.</p>
         </div>
       </div>
       <div id="wrapper3">
@@ -90,16 +91,16 @@
             <ul class="content">
               <li><code>$()</code> is an alias for the function called <code>jQuery</code>. It announces that "we are using jQuery here!" </li>
               <li><code>document</code> is the document object in HTML DOM, containing information of the entire HTML document. It is the "thing" that the function will have effect on. </li>
-              <li><code>.ready()</code> is a function defined in the <a href="http://api.jquery.com/">jQuery library</a>. It tells that "something is going to happen after the HTML document is fully loaded."</li>
-              <li><code>some function</code> inside of the paranthese of <code>.ready()</code> is going to be effective as soon as the page is ready. It usually looks like this - <code>function(){}</code>. In our above example, it contains the methods that change the shape's height when mouse hovers on the object and fade the object away when mouse is clicked.</li>          
+              <li><code>.ready()</code> is a function defined in the <a href="http://api.jquery.com/">jQuery library</a>. It allows callback functions to be triggered after the HTML document is fully loaded. In some way, it says "something is going to happen after the HTML document is fully loaded."</li>
+              <li><code>some function</code> inside of the parentheses of <code>.ready()</code> is going to be effective as soon as the page is ready. It usually looks like this - <code>function(){}</code>. In our above example, it contains the methods that change the shape's height when mouse hovers on the object and fade the object away when mouse is clicked.</li>          
             </ul>
-            <p class="content">Most of the time, you want to have <code>$(document).ready()</code> at the beginning of your jQuery magic. Becausee it is unsafe to manipulate a safe until it is fully loaded. Although your code might work without it, you should not do so.</p>
+            <p class="content">Most of the time, you want to have <code>$(document).ready()</code> at the beginning of your jQuery magic. This will make sure your code only runs after DOM is fully loaded. It is otherwise unsafe to manipulate the page, if your code depends on certain properties which take longer to load, e.g. CSS style properties. Although your code might work without it, you should not do so.</p>
             
             <h3>More jQuery Syntax</h3>
             <p class="content">Now let's look inside of the function to be execute after the HTML is ready. </p>
             <ul class="content">
               <li><code>$('div').mouseenter(some function)</code> has a very similar structure as <code>$(document).ready()</code>. </li>
-              <li><code>$('div')</code> selects all <code>&lt;div&gt;</code> elements on the HTML. In the example above, it points to the four <code>&lt;div&gt;</code> elemnts, with the id "red", "blue", "yellow" and "green". Note that it has <strong>quotes</strong> around it. In fact, other than <code>document</code>, all other selectors need to be sorrounded by quotes. </li>
+              <li><code>$('div')</code> selects all <code>&lt;div&gt;</code> elements on the HTML. In the example above, it points to the four <code>&lt;div&gt;</code> elements, with the id "red", "blue", "yellow" and "green". Note that it has <strong>quotes</strong> around it. In fact, other than <code>document</code>, all other selectors need to be sorrounded by quotes. </li>
               <li><code>.mouseenter(some function)</code> is another defined function in jQuery library. It tells that "something is going to happen after the mouse enters into the selected element."</li>
             </ul>
             <p class="content">It should be easy enough to guess what the other functions do. <code>$('div').mouseleave(some function)</code> does something when the mouse leaves the <code>&lt;div&gt;</code> elements; <code>$('div').click(some function)</code> gets triggered when the mouse is clicked. </p>
